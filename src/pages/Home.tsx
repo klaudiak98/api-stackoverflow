@@ -1,13 +1,13 @@
-import { Box, Typography, Paper, TextField } from "@mui/material"
+import { Typography } from "@mui/material"
 import TagsTable from "../components/TagsTable"
-import { ChangeEvent, useEffect, useState } from "react"
+import Pagination from "../components/Pagination"
+import { useEffect, useState } from "react"
 import { TagType } from "../utils/TagType"
 import axios, { AxiosError } from "axios"
 import { SortType } from "../utils/SortType"
 import { OrderType } from "../utils/OrderType"
 import { ErrorType } from "../utils/ErrorType"
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
 import ErrorMessage from "../components/ErrorMessage"
 
 const Home = () => {
@@ -46,18 +46,7 @@ const Home = () => {
         }
     }
 
-    const handlePerPageChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const perPage: number = Number(e.target.value)
-        setTagsPerPage(perPage)
-    }
-    
-    const handleNextPage = () => {
-        setPage(page +1)
-    }
 
-    const handlePreviousPage = () => {
-        setPage(page -1)
-    }
 
     useEffect(() => {
         fetchTags()
@@ -67,28 +56,7 @@ const Home = () => {
   return (
     <>
         <Typography variant="h1" sx={{paddingBottom: 3}}>StackOverflow Tags</Typography>
-        <Paper 
-            sx={{
-                marginBottom: 2,
-                padding: 2,
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems:'center'}}>
-            <TextField 
-                type='number' 
-                value={tagsPerPage || ''} 
-                onChange={handlePerPageChange} 
-                inputProps={{min: 1, max:100}}
-                label="how many tags?"
-                color="secondary"
-                sx={{width: '30%',}}
-            />
-            <Box display='flex' gap={2}>
-                { page > 1 && <NavigateBeforeIcon onClick={handlePreviousPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>}
-                <Typography>{page}</Typography>
-                { isNext && page < 25 && <NavigateNextIcon onClick={handleNextPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>}
-            </Box>
-        </Paper>
+        <Pagination tagsPerPage={tagsPerPage} page={page} isNext={isNext} setTagsPerPage={setTagsPerPage} setPage={setPage}/>
         {!error && <TagsTable tags={tags} sort={sort} setSort={setSort} order={order} setOrder={setOrder}loading={loading}/>}
         {error && <ErrorMessage error={error}/>}
     </>

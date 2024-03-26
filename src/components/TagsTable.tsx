@@ -64,7 +64,7 @@ const TagsTable: FC<{ tags: TagType[], sort: SortType, setSort: (sort: SortType)
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'}}>
-                  <CircularProgress size="80px"/>
+                  <CircularProgress size="80px" color="secondary"/>
                 </Box>
               </TableCell>
             </TableRow>
