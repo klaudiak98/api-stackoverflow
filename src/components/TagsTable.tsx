@@ -34,14 +34,14 @@ const TagsTable: FC<{ tags: TagType[], sort: SortType, setSort: (sort: SortType)
               sx={{
                 fontWeight: 600, 
                 width: '50%', 
-                '&:hover': {cursor: 'pointer', color: 'gray'}}} 
+                '&:hover': {cursor: 'pointer', color: 'secondary.main'}}} 
               onClick={() => handleSort('name')}>
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>Name {getSortIndicator('name')}</Box>
             </TableCell>
             <TableCell 
               sx={{
                 fontWeight: 600, 
-                '&:hover': {cursor: 'pointer', color: 'gray'}}} 
+                '&:hover': {cursor: 'pointer', color: 'secondary.main'}}} 
               onClick={() => handleSort('popular')}>
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>Amount {getSortIndicator('popular')}</Box>
             </TableCell>

@@ -80,12 +80,13 @@ const Home = () => {
                 onChange={handlePerPageChange} 
                 inputProps={{min: 1, max:100}}
                 label="how many tags?"
-                sx={{width: '30%'}}
+                color="secondary"
+                sx={{width: '30%',}}
             />
             <Box display='flex' gap={2}>
-                { page > 1 && <NavigateBeforeIcon onClick={handlePreviousPage} sx={{'&:hover': {cursor: 'pointer', color: 'gray'}}}/>}
+                { page > 1 && <NavigateBeforeIcon onClick={handlePreviousPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>}
                 <Typography>{page}</Typography>
-                { isNext && page < 25 && <NavigateNextIcon onClick={handleNextPage} sx={{'&:hover': {cursor: 'pointer', color: 'gray'}}}/>}
+                { isNext && page < 25 && <NavigateNextIcon onClick={handleNextPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>}
             </Box>
         </Paper>
         {!error && <TagsTable tags={tags} sort={sort} setSort={setSort} order={order} setOrder={setOrder}loading={loading}/>}
