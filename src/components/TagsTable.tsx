@@ -1,4 +1,4 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box } from "@mui/material"
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, CircularProgress } from "@mui/material"
 import { FC } from "react"
 import { TagType } from "../utils/TagType"
 import { SortType } from "../utils/SortType"
@@ -6,7 +6,7 @@ import { OrderType } from "../utils/OrderType"
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-const TagsTable: FC<{ tags: TagType[], sort: SortType, setSort: (sort: SortType) => void, order: OrderType, setOrder: (order: OrderType) => void}> = ({ tags, sort, setSort, order, setOrder }) => {
+const TagsTable: FC<{ tags: TagType[], sort: SortType, setSort: (sort: SortType) => void, order: OrderType, setOrder: (order: OrderType) => void, loading: boolean}> = ({ tags, sort, setSort, order, setOrder, loading }) => {
 
   const handleSort = (sortBy: SortType) => {
     if (sort === sortBy) {
@@ -48,12 +48,27 @@ const TagsTable: FC<{ tags: TagType[], sort: SortType, setSort: (sort: SortType)
           </TableRow>
         </TableHead>
         <TableBody>
-          { tags && tags.map((tag: TagType) => (
+          { !loading && tags && tags.map((tag: TagType) => (
             <TableRow key={tag.name}>
               <TableCell sx={{textAlign: 'center'}}>{tag.name}</TableCell>
               <TableCell sx={{textAlign: 'center'}}>{tag.count}</TableCell>
             </TableRow>
           ))}
+          { loading && 
+            <TableRow>
+              <TableCell colSpan={2}>
+                <Box 
+                  sx={{
+                    height: 200,
+                    alignSelf:'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'}}>
+                  <CircularProgress size="80px"/>
+                </Box>
+              </TableCell>
+            </TableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>

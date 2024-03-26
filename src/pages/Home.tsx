@@ -16,16 +16,20 @@ const Home = () => {
     const [tagsPerPage, setTagsPerPage] = useState<number>(5);
     const [page, setPage] = useState<number>(1);
     const [isNext, setIsNext] = useState<boolean>(false);
-    const [sort, setSort] = useState<SortType>('popular')
-    const [order, setOrder] = useState<OrderType>('desc')
+    const [sort, setSort] = useState<SortType>('popular');
+    const [order, setOrder] = useState<OrderType>('desc');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const fetchTags = async () => {
+        setLoading(true)
         try {
             const result = await axios.get(`${BASE_URL}&pagesize=${tagsPerPage}&page=${page}&sort=${sort}&order=${order}`)
             setTags(result.data.items)
             setIsNext(result.data.has_more)
         } catch (err) {
             console.error(err)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -71,7 +75,7 @@ const Home = () => {
                 { isNext && page < 25 && <NavigateNextIcon onClick={handleNextPage} sx={{'&:hover': {cursor: 'pointer', color: 'gray'}}}/>}
             </Box>
         </Paper>
-        <TagsTable tags={tags} sort={sort} setSort={setSort} order={order} setOrder={setOrder}/>
+        <TagsTable tags={tags} sort={sort} setSort={setSort} order={order} setOrder={setOrder} loading={loading}/>
     </>
   )
 }
