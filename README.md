@@ -4,6 +4,7 @@
 
 - React
 - TypeScript
+- MUI
 
 ## How to run
 
