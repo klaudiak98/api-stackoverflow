@@ -1,8 +1,10 @@
 import { Paper, Typography } from "@mui/material"
-import { FC } from "react"
-import { ErrorType } from "../utils/ErrorType"
+import { useTagsContext } from "../hooks/useTagsContext"
 
-const ErrorMessage: FC<{error: ErrorType}> = ({ error }) => {
+const ErrorMessage = () => {
+
+  const { error } = useTagsContext()
+
   return (
     <Paper
         sx={{

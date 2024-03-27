@@ -1,12 +1,14 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, CircularProgress } from "@mui/material"
-import { FC } from "react"
-import { TagType } from "../utils/TagType"
 import { SortType } from "../utils/SortType"
 import { OrderType } from "../utils/OrderType"
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { useTagsContext } from "../hooks/useTagsContext"
+import { TagType } from "../utils/TagType";
 
-const TagsTable: FC<{ tags: TagType[], sort: SortType, setSort: (sort: SortType) => void, order: OrderType, setOrder: (order: OrderType) => void, loading: boolean}> = ({ tags, sort, setSort, order, setOrder, loading }) => {
+const TagsTable = () => {
+
+  const { tags, sort, setSort, order, setOrder, loading } = useTagsContext()
 
   const handleSort = (sortBy: SortType) => {
     if (sort === sortBy) {
