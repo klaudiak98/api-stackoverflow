@@ -1,14 +1,13 @@
-import { Typography } from "@mui/material"
 import TagsTable from "../components/TagsTable"
-import Pagination from "../components/Pagination"
+import TableConfiguration from "../components/TableConfiguration"
 import { useEffect, useState } from "react"
 import { TagType } from "../utils/TagType"
 import axios, { AxiosError } from "axios"
 import { SortType } from "../utils/SortType"
 import { OrderType } from "../utils/OrderType"
 import { ErrorType } from "../utils/ErrorType"
-
 import ErrorMessage from "../components/ErrorMessage"
+import Header from "../components/Header"
 
 const Home = () => {
 
@@ -46,17 +45,14 @@ const Home = () => {
         }
     }
 
-
-
     useEffect(() => {
         fetchTags()
     },[page, tagsPerPage, sort, order])
 
-
   return (
     <>
-        <Typography variant="h1" sx={{paddingBottom: 3}}>StackOverflow Tags</Typography>
-        <Pagination tagsPerPage={tagsPerPage} page={page} isNext={isNext} setTagsPerPage={setTagsPerPage} setPage={setPage}/>
+        <Header title="StackOverflow Tags"/>
+        <TableConfiguration tagsPerPage={tagsPerPage} page={page} isNext={isNext} setTagsPerPage={setTagsPerPage} setPage={setPage}/>
         {!error && <TagsTable tags={tags} sort={sort} setSort={setSort} order={order} setOrder={setOrder}loading={loading}/>}
         {error && <ErrorMessage error={error}/>}
     </>
