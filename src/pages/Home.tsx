@@ -17,6 +17,9 @@ const Home = () => {
     } = useTagsContext()
 
     useEffect(() => {
+        console.log('test')
+        console.log(page)
+        console.log(fetchTags())
         fetchTags()
     },[page, tagsPerPage, sort, order])
 
