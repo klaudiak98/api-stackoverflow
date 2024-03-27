@@ -4,7 +4,6 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useTagsContext } from "../hooks/useTagsContext";
 
 const Pagination = () => {
-
     const { page, setPage, isNext } = useTagsContext()
 
     const handleNextPage = () => {
@@ -17,9 +16,13 @@ const Pagination = () => {
 
   return (
     <Box display='flex' gap={2}>
-        { page > 1 && <NavigateBeforeIcon onClick={handlePreviousPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>}
+        { page > 1 && 
+          <NavigateBeforeIcon onClick={handlePreviousPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>
+        }
         <Typography>{page}</Typography>
-        { isNext && page < 25 && <NavigateNextIcon onClick={handleNextPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}/>}
+        { isNext && page < 25 && 
+          <NavigateNextIcon onClick={handleNextPage} sx={{'&:hover': {cursor: 'pointer', color: 'secondary.main'}}}
+          />}
     </Box>
   )
 }

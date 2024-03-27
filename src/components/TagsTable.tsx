@@ -7,7 +7,6 @@ import { useTagsContext } from "../hooks/useTagsContext"
 import { TagType } from "../utils/TagType";
 
 const TagsTable = () => {
-
   const { tags, sort, setSort, order, setOrder, loading } = useTagsContext()
 
   const handleSort = (sortBy: SortType) => {
@@ -20,15 +19,15 @@ const TagsTable = () => {
     }
   }
 
-   const getSortIndicator = (sortBy: SortType) => {
+  const getSortIndicator = (sortBy: SortType) => {
     if (sort === sortBy) {
-      return order === 'asc' ? <ArrowUpwardIcon/> : <ArrowDownwardIcon/>
+      return order === 'asc' ? <ArrowUpwardIcon sx={{fontSize: '1.2em', alignSelf: 'center'}} /> : <ArrowDownwardIcon sx={{fontSize: '1.2em', alignSelf: 'center'}}/>
     }
     return null
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ maxHeight: '60vh' }}>
       <Table>
         <TableHead>
           <TableRow>
@@ -52,13 +51,18 @@ const TagsTable = () => {
         <TableBody>
           { !loading && tags && tags.map((tag: TagType) => (
             <TableRow key={tag.name}>
-              <TableCell sx={{textAlign: 'center'}}>{tag.name}</TableCell>
-              <TableCell sx={{textAlign: 'center'}}>{tag.count}</TableCell>
+              <TableCell sx={{textAlign: 'center', borderBottom: 'none'}}>{tag.name}</TableCell>
+              <TableCell sx={{textAlign: 'center', borderBottom: 'none'}}>{tag.count}</TableCell>
             </TableRow>
           ))}
+          { !loading && tags.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={2} sx={{textAlign: 'center', borderBottom: 'none'}}>No data. Please change parameters.</TableCell>
+            </TableRow>
+          )}
           { loading && 
             <TableRow>
-              <TableCell colSpan={2}>
+              <TableCell colSpan={2} sx={{ borderBottom: 'none' }}>
                 <Box 
                   sx={{
                     height: 200,

@@ -3,7 +3,6 @@ import { useTagsContext } from "../hooks/useTagsContext"
 import { ChangeEvent } from "react"
 
 const TagsPerPageInput = () => {
-
     const { tagsPerPage, setTagsPerPage } = useTagsContext()
     
     const handlePerPageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -13,20 +12,20 @@ const TagsPerPageInput = () => {
 
     return (
         <TextField 
-        type='number' 
-        value={tagsPerPage || ''} 
-        onChange={handlePerPageChange} 
-        inputProps={{min: 1, max:100}}
-        label="how many tags?"
-        color="secondary"
-        sx={{
-            width: '30%',
-            '@media (max-width: 768px)': {
-                width:'50%'
-            }
-        }}
-    />
-  )
+            type='number' 
+            value={tagsPerPage || ''} 
+            onChange={handlePerPageChange} 
+            inputProps={{ min: 1, max: 100 }}
+            label="How many tags?"
+            color="secondary"
+            sx={{
+                width: '30%',
+                '@media (max-width: 768px)': {
+                    width:'50%'
+                }
+            }}
+        />
+    )
 }
 
 export default TagsPerPageInput

@@ -6,7 +6,6 @@ import Header from "../components/Header"
 import { useTagsContext } from "../hooks/useTagsContext"
 
 const Home = () => {
-
     const {
         fetchTags,
         page,
@@ -17,18 +16,15 @@ const Home = () => {
     } = useTagsContext()
 
     useEffect(() => {
-        console.log('test')
-        console.log(page)
-        console.log(fetchTags())
         fetchTags()
     },[page, tagsPerPage, sort, order])
 
   return (
     <>
-        <Header title="StackOverflow Tags"/>
-        <TableConfiguration/>
-        {!error && <TagsTable/>}
-        {error && <ErrorMessage/>}
+      <Header title="StackOverflow Tags"/>
+      <TableConfiguration/>
+      {!error && <TagsTable/>}
+      {error && <ErrorMessage/>}
     </>
   )
 }

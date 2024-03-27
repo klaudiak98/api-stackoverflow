@@ -56,7 +56,6 @@ export const TagsProvider = ({ children } : { children: ReactNode }) => {
     const [error, setError] = useState<ErrorType>(null)
 
     const fetchTags = async () => {
-        console.log('fetch')
         setLoading(true)
         try {
             const result = await axios.get(`${BASE_URL}&pagesize=${tagsPerPage}&page=${page}&sort=${sort}&order=${order}`)
