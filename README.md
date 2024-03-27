@@ -13,7 +13,7 @@
 Run the application:
 
 ```sh
-npm ci & npm start
+npm ci && npm start
 ```
 
 Run storybook:
